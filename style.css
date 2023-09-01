@@ -1,0 +1,149 @@
+@charset "utf-8";
+
+body {
+    margin: 0;
+}
+
+/* header PC版 */
+.header {
+    width: 100%;
+    padding: 0 5%;
+    box-sizing: border-box;
+    background-color: rgba(255, 179, 0, 0.553);
+    display: flex;
+    align-items: center;
+}
+
+
+.header .title {
+    flex-basis: 60%;
+    white-space: nowrap;
+}
+
+
+.sns {
+    flex-basis: 40%;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+.sns_title {
+    margin: 0;
+}
+
+
+.sns_url_group {
+    margin: 0;
+    padding-left: 2%;
+}
+
+.sns_url_item {
+    list-style: none;
+    display: inline-block;
+}
+
+/* hedeer タブレット版 */
+@media screen and (max-width: 800px) {
+    .header {
+        padding: 3%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .header .title {
+        margin-top: 0;
+        flex-basis: 100%;
+        text-align: center;
+    }
+
+    .sns {
+        flex-basis: 100%;
+        justify-content: center;
+    }
+
+}
+
+/* hedeer スマホ版 */
+@media screen and (max-width: 480px) {
+    .header .title {
+        margin: 0;
+        transform: scale(0.8, 0.8);
+    }
+
+    .sns {
+        transform: scale(0.8, 0.8);
+    }
+}
+
+
+/* 作品 PC版 */
+
+.category {
+    white-space: nowrap;
+}
+
+.main .title {
+    margin-left: 5%;
+    font-size: 1.7em;
+}
+
+.works {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.work {
+    margin-left: 2.5%;
+    margin-bottom: 2%;
+    list-style: none;
+    flex-basis: 30%;
+}
+
+.work_title {
+    margin: 5px 0;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.work_image {
+    width: 100%;
+}
+
+.work_video {
+    width: 100%;
+}
+
+.work_url_group {
+    padding: 0;
+}
+
+.work_url_item {
+    list-style: none;
+    display: inline-block;
+}
+
+
+
+/* 作品 スマホ版 */
+@media screen and (max-width: 480px) {
+    .works {
+        justify-content: center;
+    }
+
+    .work {
+        margin-bottom: 5%;
+        flex-basis: 90%;
+    }
+
+    .main .title {
+        font-size: 1.4em;
+    }
+
+    .work_title {
+        font-size: 1.2em;
+    }
+}
