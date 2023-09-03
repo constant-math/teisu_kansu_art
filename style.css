@@ -1,83 +1,72 @@
 @charset "utf-8";
 
+/* PC版 */
+
 body {
     margin: 0;
 }
 
-/* header PC版 */
+/* header */
 .header {
+    padding: 0;
+}
+
+/* header-container */
+.header-container {
     width: 100%;
-    padding: 0 5%;
+    padding: 0;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
     background-color: rgba(255, 179, 0, 0.553);
-    display: flex;
-    align-items: center;
 }
 
 
-.header .title {
-    flex-basis: 60%;
+/* header-title-container */
+.header-title-container {
+    /* margin-left: 5%; */
+}
+
+.header-title {
     white-space: nowrap;
 }
 
 
-.sns {
-    flex-basis: 40%;
-    white-space: nowrap;
+/* header-sns-container */
+.header-sns-container {
+    margin-left: auto;
+    /* margin-right: 5%; */
     display: flex;
     align-items: center;
 }
 
-.sns_title {
+/* header-sns-title-contaier */
+.header-sns-title {
     margin: 0;
+    white-space: nowrap;
 }
 
 
-.sns_url_group {
+
+/* header-sns-url-container */
+.header-sns-url-container {
     margin: 0;
-    padding-left: 2%;
+    /* padding-left: 2%; */
 }
 
-.sns_url_item {
+.header-sns-url-group{
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.header-sns-url-item {
     list-style: none;
     display: inline-block;
 }
 
-/* hedeer タブレット版 */
-@media screen and (max-width: 800px) {
-    .header {
-        padding: 3%;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
 
-    .header .title {
-        margin-top: 0;
-        flex-basis: 100%;
-        text-align: center;
-    }
-
-    .sns {
-        flex-basis: 100%;
-        justify-content: center;
-    }
-
-}
-
-/* hedeer スマホ版 */
-@media screen and (max-width: 480px) {
-    .header .title {
-        margin: 0;
-        transform: scale(0.8, 0.8);
-    }
-
-    .sns {
-        transform: scale(0.8, 0.8);
-    }
-}
-
-
-/* 作品 PC版 */
+/* main */
 
 .category {
     white-space: nowrap;
@@ -126,9 +115,45 @@ body {
     display: inline-block;
 }
 
+/* PC半画面 */
+
+/* hedeer*/
+/* @media screen and (max-width: 800px) {
+    .header {
+        padding: 3%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .header .title {
+        margin-top: 0;
+        flex-basis: 100%;
+        text-align: center;
+    }
+
+    .sns {
+        flex-basis: 100%;
+        justify-content: center;
+    }
+
+} */
 
 
-/* 作品 スマホ版 */
+/* スマホ版 */
+/* hedeer */
+@media screen and (max-width: 480px) {
+    .header .title {
+        margin: 0;
+        transform: scale(0.8, 0.8);
+    }
+
+    .sns {
+        transform: scale(0.8, 0.8);
+    }
+}
+
+
+/* main */
 @media screen and (max-width: 480px) {
     .works {
         justify-content: center;
