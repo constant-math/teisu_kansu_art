@@ -9,6 +9,24 @@ class Work {
         this.description = description;
         this.tag = tag;
     }
+
+    //作品を表示
+    displayWork() {
+        const ul = document.getElementsByClassName("works");
+    
+        const li = document.createElement("li");
+        li.classList.add("work");
+        ul[0].appendChild(li);
+
+
+        // titleを表示
+        const h3 = document.createElement("h3");
+        h3.textContent = this.title;
+        h3.classList.add("work_title");
+        li.appendChild(h3);
+
+        //画像を表示
+    }
 }
 
 let works = [
@@ -33,6 +51,10 @@ let works = [
         ["work", "neta", "high_quality"],
     )
 ];
+
+
+
+works[0].displayWork();
 
 console.log(works);
 
