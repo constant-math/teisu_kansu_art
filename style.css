@@ -6,9 +6,6 @@ body {
     margin: 0;
 }
 
-h1 {
-    /* margin: 0; */
-}
 
 div {
     display: flex;
@@ -62,36 +59,40 @@ li {
     font-size: 1.7em;
 }
 
-.main-content-works-group {
+.main-content-works-list {
     flex-wrap: wrap;
 }
 
 
-.work {
+
+.main-content-works-list-item {
     margin-left: 2.5%;
     margin-bottom: 2%;
     flex-basis: 30%;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
 }
 
-.work-title {
+.main-content-work-title {
     margin: 5px 0;
     text-align: center;
     font-size: 1.3em;
 }
 
-.work-image {
+.main-content-work-image {
     width: 100%;
 }
 
-.work-video {
+.main-content-work-video {
     width: 100%;
 }
 
-.work-url-group {
+.main-content-work-url-list {
     padding: 0;
 }
 
-.work-url-item {
+.main-content-work-url-item {
     list-style: none;
     display: inline-block;
 }
