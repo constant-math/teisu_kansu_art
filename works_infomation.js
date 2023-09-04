@@ -110,7 +110,7 @@ const works = [
         ["work", "neta", "high_quality"],
     ),
     new Work(
-        "正岡式",
+        "さくら",
         "./vedeos/sakura.mp4",
         "https://www.desmos.com/calculator/vpjtbcltgw",
         "https://twitter.com/constant_math/status/1487712186654806020?s=20&t=ABNRdLEZVW6B8NQXhMYPpQ",
