@@ -65,27 +65,27 @@
                     ジャンル
                     <li class="main-categories-list-item">
                         <label class="main-category-label">
-                            <input type="radio" name="category" onclick="selectCategory()" checked>すべて
+                            <input type="radio" name="main-category-button" value="all" onclick="displaySelectedWorks()" checked>すべて
                         </label>
                     </li>
                     <li class="main-categories-list-item">
                         <label class="main-category-label">
-                            <input type="radio" name="category" onclick="selectCategory()">ネタ
+                            <input type="radio" name="main-category-button" value="neta" onclick="displaySelectedWorks()">ネタ
                         </label>
                     </li>
                     <li class="main-categories-list-item">
                         <label class="main-category-label">
-                            <input type="radio" name="category" onclick="selectCategory()">ハイクオリティー
+                            <input type="radio" name="main-category-button" value="high-quality" onclick="displaySelectedWorks()">ハイクオリティー
                         </label>
                     </li>
                     <li class="main-categories-list-item">
                         <label class="main-category-label">
-                            <input type="radio" name="category" onclick="selectCategory()">シンプル
+                            <input type="radio" name="main-category-button" value="simple" onclick="displaySelectedWorks()">シンプル
                         </label>
                     </li>
                     <li class="main-categories-list-item">
                         <label class="main-category-label">
-                            <input type="radio" name="category" onclick="selectCategory()">ハート
+                            <input type="radio" name="main-category-button" value="heart" onclick="displaySelectedWorks()">ハート
                         </label>
                     </li>
                 </ul>
@@ -268,8 +268,7 @@
 
 
     <!-- JavaScript -->
-    <script src="works_infomation.js"></script>
-    <script src="select_category.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

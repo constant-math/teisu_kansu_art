@@ -1,4 +1,10 @@
 
+//class
+class Categories{
+    constructor(){
+        
+    }
+}
 
 class Work {
     #title;
@@ -20,6 +26,11 @@ class Work {
         this.#tiktokUrl = tiktokUrl;
         this.#description = description;
         this.#categories = categories;
+    }
+
+    //getter setter
+    get title() {
+        return this.#title;
     }
 
     //mediumPathの拡張子を取得
@@ -101,23 +112,16 @@ class Work {
         li.appendChild(a);
     }
 
-    //カテゴリーが選択されているか判定
-    #isCategorySelected() {
-        return true
-    }
 
-    //作品を表示
-    displayWork() {
-        //カテゴリーが選択されていなければ表示しない
-        if (!this.#isCategorySelected()) {
-            return;
-        }
+    ////worksをmain-content-works-listに追加
+    appendWork() {
 
         const ul = document.getElementById("main-content-works-list");   //作品を入れる親要素
 
         //作品の情報を入れる親要素をulに追加
         const li = document.createElement("li");
         li.classList.add("main-content-works-list-item");
+        li.id = this.#title;
         ul.appendChild(li);
 
 
@@ -147,8 +151,36 @@ class Work {
         p.classList.add("main-content-work-description");
         li.appendChild(p);
     }
+
+    //選択されているcategoryを取得
+    #getSelectedCategory() {
+        const buttons = document.getElementsByName("main-category-button");
+
+        for (const button of buttons) {
+            if (button.checked) {
+                return button.value;
+            }
+        }
+    }
+
+    //workのcategoriesが選択されているcategoryを含むか判定
+    hasSelectedCategory() {
+        //すべてが選択されているとき
+        if (this.#getSelectedCategory() == "all") {
+            return true;
+        }
+
+        //選択されたカテゴリーを含まないとき
+        if (this.#categories.indexOf(this.#getSelectedCategory()) == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
 
+
+//global変数
 const works = [
     new Work(
         "正岡式",
@@ -158,7 +190,7 @@ const works = [
         "https://www.instagram.com/p/CZWUYVgvd1d/?utm_source=ig_web_copy_link",
         "https://www.tiktok.com/@constant_math/video/7058923808652086530?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
         "正岡子規ならぬ正岡式です．",
-        ["neta", "high_quality"],
+        ["neta", "high-quality"],
     ),
     new Work(
         "成功の方程式",
@@ -168,7 +200,7 @@ const works = [
         "https://www.instagram.com/p/CVX084zv1wx/?utm_source=ig_web_copy_link",
         "https://www.tiktok.com/@constant_math/video/7022158413974998273?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
         "これが本当の成功の方程式です．",
-        ["neta", "high_quality"],
+        ["neta", "high-quality"],
     ),
     new Work(
         "紫式部の「式」の部分",
@@ -178,7 +210,7 @@ const works = [
         "https://www.instagram.com/p/CdAudFIPbJ1/?utm_source=ig_web_copy_link",
         "https://www.tiktok.com/@constant_math/video/7092704557234507009?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
         "紫式部の「式」の部分を求めました.",
-        ["neta", "high_quality"],
+        ["neta", "high-quality"],
     ),
     new Work(
         "富士山",
@@ -188,13 +220,37 @@ const works = [
         "https://www.instagram.com/p/CawbIrivtEM/?utm_source=ig_web_copy_link",
         "https://www.tiktok.com/@constant_math/video/7071909842180410625?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
         "逆さ富士まで描いたのがこだわりです.",
-        ["high_quality"],
+        ["high-quality"],
     )
 ];
 
 
-//作品を表示
-for (const work of works) {
-    work.displayWork();
+//関数
+//worksをmain-content-works-listに追加
+function appendWorks() {
+    for (const work of works) {
+        work.appendWork();
+    }
 }
+
+//選択されたカテゴリーの作品を表示
+function displaySelectedWorks() {
+    for (const work of works) {
+        let li = document.getElementById(work.title);
+
+        //カテゴリーが選択されていれば表示する
+        if (work.hasSelectedCategory()) {
+            li.style.display = ""
+        }else{
+            li.style.display = "none"
+        }
+    }
+}
+
+
+// mainコード
+appendWorks();
+
+
+
 
