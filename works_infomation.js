@@ -1,30 +1,40 @@
 
 
 class Work {
-    constructor(title, mediumPath, desmosUrl, twitterUrl, instagramUrl, tiktokUrl, description, tags) {
-        this.title = title;
-        this.mediumPath = mediumPath;
-        this.desmosUrl = desmosUrl;
-        this.twitterUrl = twitterUrl
-        this.instagramUrl = instagramUrl;
-        this.tiktokUrl = tiktokUrl;
-        this.description = description;
-        this.tags = tags;
+    #title;
+    #mediumPath;
+    #desmosUrl;
+    #twitterUrl;
+    #instagramUrl;
+    #tiktokUrl;
+    #description;
+    #categories;
+
+
+    constructor(title, mediumPath, desmosUrl, twitterUrl, instagramUrl, tiktokUrl, description, categories) {
+        this.#title = title;
+        this.#mediumPath = mediumPath;
+        this.#desmosUrl = desmosUrl;
+        this.#twitterUrl = twitterUrl
+        this.#instagramUrl = instagramUrl;
+        this.#tiktokUrl = tiktokUrl;
+        this.#description = description;
+        this.#categories = categories;
     }
 
     //mediumPathの拡張子を取得
-    getMediumPathExtension() {
-        const pointPosition = this.mediumPath.lastIndexOf(".");//mediumPath.の位置を後ろから検索
+    #getMediumPathExtension() {
+        const pointPosition = this.#mediumPath.lastIndexOf(".");//mediumPath.の位置を後ろから検索
         // 拡張子がなかったら""を返す
         if (pointPosition == -1) {
             return ""
         }
-        return this.mediumPath.slice(pointPosition);
+        return this.#mediumPath.slice(pointPosition);
     }
 
     //mediumPathの拡張子がExtensionsにあるか判定
-    hasMediumPathExtension(Extensions) {
-        const mediumPathExtension = this.getMediumPathExtension()//mediumPathの拡張子
+    #hasMediumPathExtension(Extensions) {
+        const mediumPathExtension = this.#getMediumPathExtension()//mediumPathの拡張子
         // mediumPathの拡張子がExtensionsになければfalseを返す
         if (Extensions.indexOf(mediumPathExtension) == -1) {
             return false
@@ -33,32 +43,32 @@ class Work {
     }
 
     // mediumをliに追加
-    appendMedium(li) {
+    #appendMedium(li) {
         const imageExtensions = [".png", ".PNG", ".jpg", ".JPG"] //画像の拡張子
         const videoExtensions = [".mp4", ".MP4", ".mov", ".MOV"] //画像の拡張子
 
         //mediumがimageの時
-        if (this.hasMediumPathExtension(imageExtensions)) {
+        if (this.#hasMediumPathExtension(imageExtensions)) {
             //aタグをliに追加
             const a = document.createElement("a");
-            a.href = this.mediumPath;
+            a.href = this.#mediumPath;
             li.appendChild(a);
 
             //imgをaに追加
             const img = document.createElement("img");
-            img.src = this.mediumPath;
-            img.alt = this.title;
+            img.src = this.#mediumPath;
+            img.alt = this.#title;
             img.classList.add("main-content-work-image");
             a.appendChild(img);
             return;
         }
 
         //mediumがvideoの時
-        if (this.hasMediumPathExtension(videoExtensions)) {
+        if (this.#hasMediumPathExtension(videoExtensions)) {
             //videoをliに追加
             const video = document.createElement("video");
-            video.src = this.mediumPath;
-            video.alt = this.title;
+            video.src = this.#mediumPath;
+            video.alt = this.#title;
             video.controls = true;
             video.muted = true;
             video.autoplay = true;
@@ -76,7 +86,7 @@ class Work {
     }
 
     //url listにurlを追加
-    appendUrl(ul, text, url) {
+    #appendUrl(ul, text, url) {
         //ulにliを追加
         const li = document.createElement("li");
         li.classList.add("main-content-work-url-list-item");
@@ -91,8 +101,18 @@ class Work {
         li.appendChild(a);
     }
 
+    //カテゴリーが選択されているか判定
+    #isCategorySelected() {
+        return true
+    }
+
     //作品を表示
     displayWork() {
+        //カテゴリーが選択されていなければ表示しない
+        if (!this.#isCategorySelected()) {
+            return;
+        }
+
         const ul = document.getElementById("main-content-works-list");   //作品を入れる親要素
 
         //作品の情報を入れる親要素をulに追加
@@ -103,12 +123,12 @@ class Work {
 
         // titleをliに追加
         const h3 = document.createElement("h3");
-        h3.textContent = this.title;
+        h3.textContent = this.#title;
         h3.classList.add("main-content-work-title");
         li.appendChild(h3);
 
         // mediumをliに追加
-        this.appendMedium(li);
+        this.#appendMedium(li);
 
         //url listをliに追加
         const ulUrl = document.createElement("ul");
@@ -116,14 +136,14 @@ class Work {
         li.appendChild(ulUrl);
 
         //url listにurlを追加
-        this.appendUrl(ulUrl,"Desmos",this.desmosUrl);
-        this.appendUrl(ulUrl,"Twitter",this.twitterUrl);
-        this.appendUrl(ulUrl,"Instagram",this.instagramUrl);
-        this.appendUrl(ulUrl,"TikTok",this.tiktokUrl);
+        this.#appendUrl(ulUrl, "Desmos", this.#desmosUrl);
+        this.#appendUrl(ulUrl, "Twitter", this.#twitterUrl);
+        this.#appendUrl(ulUrl, "Instagram", this.#instagramUrl);
+        this.#appendUrl(ulUrl, "TikTok", this.#tiktokUrl);
 
         //descriptionをliに追加
-        const p=document.createElement("p");
-        p.textContent=this.description;
+        const p = document.createElement("p");
+        p.textContent = this.#description;
         p.classList.add("main-content-work-description");
         li.appendChild(p);
     }
@@ -174,6 +194,7 @@ const works = [
 
 
 //作品を表示
-for(const work of works){
+for (const work of works) {
     work.displayWork();
 }
+
