@@ -1,11 +1,28 @@
-
 //class
-class Categories{
-    constructor(){
-        
+//カテゴリー選択ボタンの情報をまとめたclass
+class CategoryButton {
+    #categories = ["ネタ", "ハイクオリティー", "シンプル", "ハート"];
+    constructor() {
+    }
+
+    get categories(){
+        return this.#categories;
+    }
+
+
+    //選択されているcategoryを取得
+    get selectedCategory() {
+        const buttons = document.getElementsByName("main-category-button");
+
+        for (const button of buttons) {
+            if (button.checked) {
+                return button.value;
+            }
+        }
     }
 }
 
+//作品の情報をまとめたclass
 class Work {
     #title;
     #mediumPath;
@@ -14,10 +31,10 @@ class Work {
     #instagramUrl;
     #tiktokUrl;
     #description;
-    #categories;
+    #category;
 
 
-    constructor(title, mediumPath, desmosUrl, twitterUrl, instagramUrl, tiktokUrl, description, categories) {
+    constructor(title, mediumPath, desmosUrl, twitterUrl, instagramUrl, tiktokUrl, description, category) {
         this.#title = title;
         this.#mediumPath = mediumPath;
         this.#desmosUrl = desmosUrl;
@@ -25,7 +42,7 @@ class Work {
         this.#instagramUrl = instagramUrl;
         this.#tiktokUrl = tiktokUrl;
         this.#description = description;
-        this.#categories = categories;
+        this.#category = category;
     }
 
     //getter setter
@@ -122,7 +139,6 @@ class Work {
         const li = document.createElement("li");
         li.classList.add("main-content-works-list-item");
         li.id = this.#title;
-        ul.appendChild(li);
 
 
         // titleをliに追加
@@ -150,106 +166,133 @@ class Work {
         p.textContent = this.#description;
         p.classList.add("main-content-work-description");
         li.appendChild(p);
+
+        ul.appendChild(li);
     }
 
-    //選択されているcategoryを取得
-    #getSelectedCategory() {
-        const buttons = document.getElementsByName("main-category-button");
 
-        for (const button of buttons) {
-            if (button.checked) {
-                return button.value;
-            }
-        }
-    }
-
-    //workのcategoriesが選択されているcategoryを含むか判定
+    //work.categoryがselectedCategoryを含むか判定
     hasSelectedCategory() {
         //すべてが選択されているとき
-        if (this.#getSelectedCategory() == "all") {
+        if (main.categoryButton.selectedCategory== "すべて") {
             return true;
         }
 
         //選択されたカテゴリーを含まないとき
-        if (this.#categories.indexOf(this.#getSelectedCategory()) == -1) {
+        if (this.#category.indexOf(main.categoryButton.selectedCategory) == -1) {
             return false;
         } else {
             return true;
         }
     }
+
+
 }
 
+//作品をまとめたclass
+class Works {
+    #worksInfomation = [
+        new Work(
+            "正岡式",
+            "./images/masaokashiki.png",
+            "https://www.desmos.com/calculator/vpjtbcltgw",
+            "https://twitter.com/constant_math/status/1487712186654806020?s=20&t=ABNRdLEZVW6B8NQXhMYPpQ",
+            "https://www.instagram.com/p/CZWUYVgvd1d/?utm_source=ig_web_copy_link",
+            "https://www.tiktok.com/@constant_math/video/7058923808652086530?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
+            "正岡子規ならぬ正岡式です．",
+            ["ネタ", "ハイクオリティー"],
+        ),
+        new Work(
+            "成功の方程式",
+            "./images/seikounohouteishiki.png",
+            "https://www.desmos.com/calculator/vmcsusrcis",
+            "https://twitter.com/constant_math/status/1451809808965767171?s=20&t=ABNRdLEZVW6B8NQXhMYPpQ",
+            "https://www.instagram.com/p/CVX084zv1wx/?utm_source=ig_web_copy_link",
+            "https://www.tiktok.com/@constant_math/video/7022158413974998273?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
+            "これが本当の成功の方程式です．",
+            ["ネタ", "ハイクオリティー"],
+        ),
+        new Work(
+            "紫式部の「式」の部分",
+            "./images/murasakishikibu.png",
+            "https://www.desmos.com/calculator/ckycuovihw",
+            "https://twitter.com/constant_math/status/1520696133886300161?s=20&t=ABNRdLEZVW6B8NQXhMYPpQ",
+            "https://www.instagram.com/p/CdAudFIPbJ1/?utm_source=ig_web_copy_link",
+            "https://www.tiktok.com/@constant_math/video/7092704557234507009?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
+            "紫式部の「式」の部分を求めました.",
+            ["ネタ", "ハイクオリティー"],
+        ),
+        new Work(
+            "富士山",
+            "./images/fujisan.png",
+            "https://www.desmos.com/calculator/nfjxkyxvsl",
+            "https://twitter.com/constant_math/status/1500395771614662656?s=20&t=WdZBaHy5EUYVCjOG0RpkTg",
+            "https://www.instagram.com/p/CawbIrivtEM/?utm_source=ig_web_copy_link",
+            "https://www.tiktok.com/@constant_math/video/7071909842180410625?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
+            "逆さ富士まで描いたのがこだわりです.",
+            ["ハイクオリティー"],
+        )
+    ];
 
-//global変数
-const works = [
-    new Work(
-        "正岡式",
-        "./images/masaokashiki.png",
-        "https://www.desmos.com/calculator/vpjtbcltgw",
-        "https://twitter.com/constant_math/status/1487712186654806020?s=20&t=ABNRdLEZVW6B8NQXhMYPpQ",
-        "https://www.instagram.com/p/CZWUYVgvd1d/?utm_source=ig_web_copy_link",
-        "https://www.tiktok.com/@constant_math/video/7058923808652086530?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
-        "正岡子規ならぬ正岡式です．",
-        ["neta", "high-quality"],
-    ),
-    new Work(
-        "成功の方程式",
-        "./images/seikounohouteishiki.png",
-        "https://www.desmos.com/calculator/vmcsusrcis",
-        "https://twitter.com/constant_math/status/1451809808965767171?s=20&t=ABNRdLEZVW6B8NQXhMYPpQ",
-        "https://www.instagram.com/p/CVX084zv1wx/?utm_source=ig_web_copy_link",
-        "https://www.tiktok.com/@constant_math/video/7022158413974998273?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
-        "これが本当の成功の方程式です．",
-        ["neta", "high-quality"],
-    ),
-    new Work(
-        "紫式部の「式」の部分",
-        "./images/murasakishikibu.png",
-        "https://www.desmos.com/calculator/ckycuovihw",
-        "https://twitter.com/constant_math/status/1520696133886300161?s=20&t=ABNRdLEZVW6B8NQXhMYPpQ",
-        "https://www.instagram.com/p/CdAudFIPbJ1/?utm_source=ig_web_copy_link",
-        "https://www.tiktok.com/@constant_math/video/7092704557234507009?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
-        "紫式部の「式」の部分を求めました.",
-        ["neta", "high-quality"],
-    ),
-    new Work(
-        "富士山",
-        "./images/fujisan.png",
-        "https://www.desmos.com/calculator/nfjxkyxvsl",
-        "https://twitter.com/constant_math/status/1500395771614662656?s=20&t=WdZBaHy5EUYVCjOG0RpkTg",
-        "https://www.instagram.com/p/CawbIrivtEM/?utm_source=ig_web_copy_link",
-        "https://www.tiktok.com/@constant_math/video/7071909842180410625?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
-        "逆さ富士まで描いたのがこだわりです.",
-        ["high-quality"],
-    )
-];
-
-
-//関数
-//worksをmain-content-works-listに追加
-function appendWorks() {
-    for (const work of works) {
-        work.appendWork();
+    constructor() {
     }
-}
 
-//選択されたカテゴリーの作品を表示
-function displaySelectedWorks() {
-    for (const work of works) {
-        let li = document.getElementById(work.title);
+    get worksInfomation(){
+        return this.#worksInfomation;
+    }
 
-        //カテゴリーが選択されていれば表示する
-        if (work.hasSelectedCategory()) {
-            li.style.display = ""
-        }else{
-            li.style.display = "none"
+    //worksを追加
+    appendWorks() {
+        for (const work of this.#worksInfomation) {
+            work.appendWork();
+        }
+    }
+
+    //選択されたカテゴリーの作品を表示
+    displaySelectedWorks() {
+        for (const work of this.#worksInfomation) {
+            let li = document.getElementById(work.title);
+
+            //workがselectedCategoryを持っていればば表示する
+            if (work.hasSelectedCategory()) {
+                li.style.display = ""
+            } else {
+                li.style.display = "none"
+            }
         }
     }
 }
 
 
+
 // mainコード
-appendWorks();
+class Main {
+    #categoryButton = new CategoryButton();
+
+    #works = new Works();
+
+    constructor() {
+
+    }
+
+    //getter setter
+    get categoryButton(){
+        return this.#categoryButton
+    }
+
+    get works(){
+        return this.#works
+    }
+
+    //mainコード
+    main() {
+        this.works.appendWorks();
+    }
+
+}
+
+const main = new Main();
+main.main();
 
 
 
