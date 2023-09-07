@@ -1,23 +1,11 @@
 //class
-//appendするmethodをまとめたクラス
-class Append{
-    constructor() {
-    }
-
-    //liをulに追加
-    appendli(ul){
-
-    }
-}
-
-
 //カテゴリー選択ボタンの情報をまとめたclass
 class CategoryButton {
     #categories = ["ネタ", "ハイクオリティー", "シンプル", "ハート"];
     constructor() {
     }
 
-    get categories(){
+    get categories() {
         return this.#categories;
     }
 
@@ -31,6 +19,10 @@ class CategoryButton {
                 return button.value;
             }
         }
+
+        //一つも選択されていないとき
+        console.log("カテゴリーボタンが選択されていません．");
+        return "error";
     }
 }
 
@@ -63,7 +55,7 @@ class Work {
     }
 
     //mediumPathの拡張子を取得
-    #getMediumPathExtension() {
+    get mediumPathExtension() {
         const pointPosition = this.#mediumPath.lastIndexOf(".");//mediumPath.の位置を後ろから検索
         // 拡張子がなかったら""を返す
         if (pointPosition == -1) {
@@ -72,23 +64,22 @@ class Work {
         return this.#mediumPath.slice(pointPosition);
     }
 
-    //mediumPathの拡張子がExtensionsにあるか判定
-    #hasMediumPathExtension(Extensions) {
-        const mediumPathExtension = this.#getMediumPathExtension()//mediumPathの拡張子
-        // mediumPathの拡張子がExtensionsになければfalseを返す
-        if (Extensions.indexOf(mediumPathExtension) == -1) {
-            return false
-        }
-        return true;
+    //mediumがimageか判定
+    #isImage() {
+        const imageExtensions = [".png", ".PNG", ".jpg", ".JPG"]; //画像の拡張子
+        return imageExtensions.includes(this.mediumPathExtension);
+    }
+
+    //mediumがvideoか判定
+    #isVideo() {
+        const videoExtensions = [".mp4", ".MP4", ".mov", ".MOV"]; //動画の拡張子
+        return videoExtensions.includes(this.mediumPathExtension);
     }
 
     // mediumをliに追加
     #appendMedium(li) {
-        const imageExtensions = [".png", ".PNG", ".jpg", ".JPG"] //画像の拡張子
-        const videoExtensions = [".mp4", ".MP4", ".mov", ".MOV"] //画像の拡張子
-
         //mediumがimageの時
-        if (this.#hasMediumPathExtension(imageExtensions)) {
+        if (this.#isImage()) {
             //aタグをliに追加
             const a = document.createElement("a");
             a.href = this.#mediumPath;
@@ -104,7 +95,7 @@ class Work {
         }
 
         //mediumがvideoの時
-        if (this.#hasMediumPathExtension(videoExtensions)) {
+        if (this.#isVideo()) {
             //videoをliに追加
             const video = document.createElement("video");
             video.src = this.#mediumPath;
@@ -119,9 +110,10 @@ class Work {
             return;
         }
 
-        //error
+        //imageでもvideoでもないとき
         const p = document.createElement("p");
         p.textContent = "error";
+        console.log(this.#mediumPath + "の拡張子に対応していません．")
         li.appendChild(p);
     }
 
@@ -144,10 +136,10 @@ class Work {
 
     ////workをdocumentFragmentに追加
     appendWork(documentFragment) {
-        //作品の情報を入れる親要素をulに追加
+        //作品の情報を入れる親要素をdocumentFragmentに追加
         const li = document.createElement("li");
-        li.classList.add("main-content-works-list-item");
         li.id = this.#title;
+        li.classList.add("main-content-works-list-item");
         documentFragment.appendChild(li);
 
 
@@ -161,41 +153,34 @@ class Work {
         this.#appendMedium(li);
 
         //url listをliに追加
-        const ulUrl = document.createElement("ul");
-        ulUrl.classList.add("main-content-work-url-list");
-        li.appendChild(ulUrl);
+        const ul = document.createElement("ul");
+        ul.classList.add("main-content-work-url-list");
+        li.appendChild(ul);
 
         //url listにurlを追加
-        this.#appendUrl(ulUrl, "Desmos", this.#desmosUrl);
-        this.#appendUrl(ulUrl, "Twitter", this.#twitterUrl);
-        this.#appendUrl(ulUrl, "Instagram", this.#instagramUrl);
-        this.#appendUrl(ulUrl, "TikTok", this.#tiktokUrl);
+        this.#appendUrl(ul, "Desmos", this.#desmosUrl);
+        this.#appendUrl(ul, "Twitter", this.#twitterUrl);
+        this.#appendUrl(ul, "Instagram", this.#instagramUrl);
+        this.#appendUrl(ul, "TikTok", this.#tiktokUrl);
 
         //descriptionをliに追加
         const p = document.createElement("p");
         p.textContent = this.#description;
         p.classList.add("main-content-work-description");
         li.appendChild(p);
-
-
     }
 
 
     //work.categoryがselectedCategoryを含むか判定
     hasSelectedCategory() {
-        const categoryButton=new CategoryButton();
+        const categoryButton = new CategoryButton();
 
         //すべてが選択されているとき
-        if (categoryButton.selectedCategory== "すべて") {
+        if (categoryButton.selectedCategory == "すべて") {
             return true;
         }
 
-        //選択されたカテゴリーを含まないとき
-        if (this.#category.indexOf(categoryButton.selectedCategory) == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return this.#category.includes(categoryButton.selectedCategory);
     }
 
 
@@ -273,7 +258,7 @@ class Works {
             "https://www.instagram.com/reel/Cj5Q7dbO87Q/?utm_source=ig_web_copy_link",
             "https://www.tiktok.com/@constant_math/video/7019081531301940482?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
             "周期的なものと言えば,三角関数！",
-            ["シンプル","ハート"],
+            ["シンプル", "ハート"],
         ),
         new Work(
             "ハートの色塗り",
@@ -283,21 +268,21 @@ class Works {
             "https://www.instagram.com/reel/Cj2ysu0t9IM/?utm_source=ig_web_copy_link",
             "https://www.tiktok.com/@constant_math/video/7018876745591819522?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
             "三角関数を使うことで，方程式でも色を塗れます．",
-            ["シンプル","ハート"],
+            ["シンプル", "ハート"],
         )
     ];
 
     constructor() {
     }
 
-    get worksInfomation(){
+    get worksInfomation() {
         return this.#worksInfomation;
     }
 
     //worksをulに追加
     appendWorks() {
         //documentFragmentをつくる
-        const documentFragment=document.createDocumentFragment();
+        const documentFragment = document.createDocumentFragment();
 
         //workをdocumentFragmentに追加
         for (const work of this.#worksInfomation) {
@@ -326,33 +311,11 @@ class Works {
 
 
 // mainコード
-class Main {
-    #categoryButton = new CategoryButton();
+const categoryButton = new CategoryButton();
+const works = new Works();
 
-    #works = new Works();
+works.appendWorks();
 
-    constructor() {
-
-    }
-
-    //getter setter
-    get categoryButton(){
-        return this.#categoryButton
-    }
-
-    get works(){
-        return this.#works
-    }
-
-    //mainコード
-    main() {
-        this.works.appendWorks();
-    }
-
-}
-
-const main = new Main();
-main.main();
 
 
 
