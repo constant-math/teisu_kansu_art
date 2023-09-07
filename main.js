@@ -76,101 +76,65 @@ class Work {
         return videoExtensions.includes(this.mediumPathExtension);
     }
 
-    // mediumをliに追加
-    #appendMedium(li) {
-        //mediumがimageの時
-        if (this.#isImage()) {
-            //aタグをliに追加
-            const a = document.createElement("a");
-            a.href = this.#mediumPath;
-            li.appendChild(a);
-
-            //imgをaに追加
-            const img = document.createElement("img");
-            img.src = this.#mediumPath;
-            img.alt = this.#title;
-            img.classList.add("main-content-work-image");
-            a.appendChild(img);
-            return;
-        }
-
-        //mediumがvideoの時
-        if (this.#isVideo()) {
-            //videoをliに追加
-            const video = document.createElement("video");
-            video.src = this.#mediumPath;
-            video.alt = this.#title;
-            video.controls = true;
-            video.muted = true;
-            video.autoplay = true;
-            video.loop = true;
-            video.playsinline = true;
-            video.classList.add("main-content-work-video");
-            li.appendChild(video);
-            return;
-        }
-
-        //imageでもvideoでもないとき
-        const p = document.createElement("p");
-        p.textContent = "error";
-        console.log(this.#mediumPath + "の拡張子に対応していません．")
-        li.appendChild(p);
-    }
-
-    //url listにurlを追加
-    #appendUrl(ul, text, url) {
-        //ulにliを追加
-        const li = document.createElement("li");
-        li.classList.add("main-content-work-url-list-item");
-        ul.appendChild(li);
-
-        //liにaを追加
-        const a = document.createElement("a");
-        a.textContent = text
-        a.href = url;
-        a.target = "_blank"
-        a.rel = "noopener noreferrer"
-        li.appendChild(a);
-    }
-
-
     ////workをdocumentFragmentに追加
     appendWork(documentFragment) {
-        //作品の情報を入れる親要素をdocumentFragmentに追加
-        const li = document.createElement("li");
-        li.id = this.#title;
-        li.classList.add("main-content-works-list-item");
-        documentFragment.appendChild(li);
+        //templateからcloneして子要素を取得する
+        const template = document.getElementById("main-content-works-list-item-template");
+        const worksListItem = template.cloneNode(true);
+        const title = worksListItem.querySelector(".main-content-work-title");
+        const aImage = worksListItem.querySelector(".main-content-work-a-image");
+        const image = aImage.querySelector(".main-content-work-image");
+        const video = worksListItem.querySelector(".main-content-work-video");
+        const urlList = worksListItem.querySelector(".main-content-work-url-list");
+        const urlListItems = urlList.querySelectorAll(".main-content-work-url-list-item");
+        const desmosUrl=urlListItems[0].querySelector(".main-content-work-url-list-item-a");
+        const twitterUrl=urlListItems[1].querySelector(".main-content-work-url-list-item-a");
+        const instagramUrl=urlListItems[2].querySelector(".main-content-work-url-list-item-a");
+        const tiktokUrl=urlListItems[3].querySelector(".main-content-work-url-list-item-a");
+        const description = worksListItem.querySelector(".main-content-work-description");
 
 
-        // titleをliに追加
-        const h3 = document.createElement("h3");
-        h3.textContent = this.#title;
-        h3.classList.add("main-content-work-title");
-        li.appendChild(h3);
+        //worksListItem
+        worksListItem.id = this.#title;
+        worksListItem.style.display = "";
 
-        // mediumをliに追加
-        this.#appendMedium(li);
+        // title
+        title.textContent = this.#title;
 
-        //url listをliに追加
-        const ul = document.createElement("ul");
-        ul.classList.add("main-content-work-url-list");
-        li.appendChild(ul);
+        //medium
+        if (this.#isImage()) {
 
-        //url listにurlを追加
-        this.#appendUrl(ul, "Desmos", this.#desmosUrl);
-        this.#appendUrl(ul, "Twitter", this.#twitterUrl);
-        this.#appendUrl(ul, "Instagram", this.#instagramUrl);
-        this.#appendUrl(ul, "TikTok", this.#tiktokUrl);
+            aImage.href = this.#mediumPath;
 
-        //descriptionをliに追加
-        const p = document.createElement("p");
-        p.textContent = this.#description;
-        p.classList.add("main-content-work-description");
-        li.appendChild(p);
+            image.src = this.#mediumPath;
+            image.alt = this.#title;
+
+            video.style.display = "none";
+        } else if (this.#isVideo()) {
+            video.src = this.#mediumPath;
+            video.alt = this.#title;
+
+            image.style.display="none";
+        }else{
+            const p = document.createElement("p");
+            p.textContent = "error";
+            console.log(this.#mediumPath + "の拡張子に対応していません．")
+            worksListItem.appendChild(p);
+        }
+
+        //urlList
+        desmosUrl.href=this.#desmosUrl;
+        twitterUrl.href=this.#twitterUrl;
+        instagramUrl.href=this.#instagramUrl;
+        tiktokUrl.href=this.#tiktokUrl;
+
+        //description
+        description.textContent = this.#description;
+
+        //documentFragmentに追加
+        documentFragment.appendChild(worksListItem);
     }
-
-
+    
     //work.categoryがselectedCategoryを含むか判定
     hasSelectedCategory() {
         const categoryButton = new CategoryButton();
@@ -295,6 +259,7 @@ class Works {
     }
 
     //選択されたカテゴリーの作品を表示
+    //cloneを使って一度に変更する方が良い
     displaySelectedWorks() {
         for (const work of this.#worksInfomation) {
             let li = document.getElementById(work.title);
