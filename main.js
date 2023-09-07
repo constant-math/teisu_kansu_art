@@ -130,15 +130,13 @@ class Work {
     }
 
 
-    ////worksをmain-content-works-listに追加
-    appendWork() {
-
-        const ul = document.getElementById("main-content-works-list");   //作品を入れる親要素
-
+    ////workをdocumentFragmentに追加
+    appendWork(documentFragment) {
         //作品の情報を入れる親要素をulに追加
         const li = document.createElement("li");
         li.classList.add("main-content-works-list-item");
         li.id = this.#title;
+        documentFragment.appendChild(li);
 
 
         // titleをliに追加
@@ -167,19 +165,21 @@ class Work {
         p.classList.add("main-content-work-description");
         li.appendChild(p);
 
-        ul.appendChild(li);
+
     }
 
 
     //work.categoryがselectedCategoryを含むか判定
     hasSelectedCategory() {
+        const categoryButton=new CategoryButton();
+
         //すべてが選択されているとき
-        if (main.categoryButton.selectedCategory== "すべて") {
+        if (categoryButton.selectedCategory== "すべて") {
             return true;
         }
 
         //選択されたカテゴリーを含まないとき
-        if (this.#category.indexOf(main.categoryButton.selectedCategory) == -1) {
+        if (this.#category.indexOf(categoryButton.selectedCategory) == -1) {
             return false;
         } else {
             return true;
@@ -241,11 +241,19 @@ class Works {
         return this.#worksInfomation;
     }
 
-    //worksを追加
+    //worksをulに追加
     appendWorks() {
+        //documentFragmentをつくる
+        const documentFragment=document.createDocumentFragment();
+
+        //workをdocumentFragmentに追加
         for (const work of this.#worksInfomation) {
-            work.appendWork();
+            work.appendWork(documentFragment);
         }
+
+        //ulにdocumentFragmentを追加
+        const ul = document.getElementById("main-content-works-list");
+        ul.appendChild(documentFragment);
     }
 
     //選択されたカテゴリーの作品を表示
