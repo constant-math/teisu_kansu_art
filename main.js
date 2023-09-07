@@ -1,4 +1,16 @@
 //class
+//appendするmethodをまとめたクラス
+class Append{
+    constructor() {
+    }
+
+    //liをulに追加
+    appendli(ul){
+
+    }
+}
+
+
 //カテゴリー選択ボタンの情報をまとめたclass
 class CategoryButton {
     #categories = ["ネタ", "ハイクオリティー", "シンプル", "ハート"];
@@ -231,6 +243,47 @@ class Works {
             "https://www.tiktok.com/@constant_math/video/7071909842180410625?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
             "逆さ富士まで描いたのがこだわりです.",
             ["ハイクオリティー"],
+        ),
+        new Work(
+            "モナ・リザ",
+            "./images/monalisa.png",
+            "https://www.desmos.com/calculator/aira5crdjr",
+            "https://twitter.com/constant_math/status/1447170072829587460?s=20&t=nu49ohVqdGEynwknXiGmhQ",
+            "https://www.instagram.com/p/CU2dg7JPu8R/?utm_source=ig_web_copy_link",
+            "https://www.tiktok.com/@constant_math/video/7018490329766579458?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
+            "実は，直線だけで描いています．",
+            ["ハイクオリティー"],
+        ),
+        new Work(
+            "サクラ",
+            "./vedeos/sakura.mp4",
+            "https://www.desmos.com/calculator/dplwudxfx3",
+            "https://twitter.com/constant_math/status/1449575555888603136?s=20&t=hZpSP4GpIZRUQpoWsKh-yQ",
+            "https://www.instagram.com/p/CVHTlvYPDah/?utm_source=ig_web_copy_link",
+            "https://www.tiktok.com/@constant_math/video/7019865845526580482?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
+            // "数学を愛する会さんの<a target=\"_blank\"href=\"https://twitter.com/mathlava/status/1454025782632747013?s=20&t=hZpSP4GpIZRUQpoWsKh-yQ\">グラフアートコンテスト（お題：\"芸術\"）</a>で優秀作品に選ばれました.",
+            "",
+            ["シンプル"],
+        ),
+        new Work(
+            "心臓の鼓動",
+            "./vedeos/shinzounokodou.mp4",
+            "https://www.desmos.com/calculator/hbb9wn5wcy",
+            "https://twitter.com/constant_math/status/1448795371770052608?s=20&t=hZpSP4GpIZRUQpoWsKh-yQ",
+            "https://www.instagram.com/reel/Cj5Q7dbO87Q/?utm_source=ig_web_copy_link",
+            "https://www.tiktok.com/@constant_math/video/7019081531301940482?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
+            "周期的なものと言えば,三角関数！",
+            ["シンプル","ハート"],
+        ),
+        new Work(
+            "ハートの色塗り",
+            "./vedeos/heartnoironuri.mp4",
+            "https://www.desmos.com/calculator/1mxfvnosvi",
+            "https://twitter.com/constant_math/status/1448605695234895878?s=20&t=hZpSP4GpIZRUQpoWsKh-yQ",
+            "https://www.instagram.com/reel/Cj2ysu0t9IM/?utm_source=ig_web_copy_link",
+            "https://www.tiktok.com/@constant_math/video/7018876745591819522?is_from_webapp=1&sender_device=pc&web_id=7130789751313581569",
+            "三角関数を使うことで，方程式でも色を塗れます．",
+            ["シンプル","ハート"],
         )
     ];
 
@@ -270,7 +323,6 @@ class Works {
         }
     }
 }
-
 
 
 // mainコード
