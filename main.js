@@ -87,10 +87,10 @@ class Work {
         const video = worksListItem.querySelector(".main-content-work-video");
         const urlList = worksListItem.querySelector(".main-content-work-url-list");
         const urlListItems = urlList.querySelectorAll(".main-content-work-url-list-item");
-        const desmosUrl=urlListItems[0].querySelector(".main-content-work-url-list-item-a");
-        const twitterUrl=urlListItems[1].querySelector(".main-content-work-url-list-item-a");
-        const instagramUrl=urlListItems[2].querySelector(".main-content-work-url-list-item-a");
-        const tiktokUrl=urlListItems[3].querySelector(".main-content-work-url-list-item-a");
+        const desmosUrl = urlListItems[0].querySelector(".main-content-work-url-list-item-a");
+        const twitterUrl = urlListItems[1].querySelector(".main-content-work-url-list-item-a");
+        const instagramUrl = urlListItems[2].querySelector(".main-content-work-url-list-item-a");
+        const tiktokUrl = urlListItems[3].querySelector(".main-content-work-url-list-item-a");
         const description = worksListItem.querySelector(".main-content-work-description");
 
 
@@ -114,19 +114,18 @@ class Work {
             video.src = this.#mediumPath;
             video.alt = this.#title;
 
-            image.style.display="none";
-        }else{
-            const p = document.createElement("p");
-            p.textContent = "error";
+            aImage.style.display = "none";
+        } else {
+            aImage.style.display = "none";
+            video.style.display = "none";
             console.log(this.#mediumPath + "の拡張子に対応していません．")
-            worksListItem.appendChild(p);
         }
 
         //urlList
-        desmosUrl.href=this.#desmosUrl;
-        twitterUrl.href=this.#twitterUrl;
-        instagramUrl.href=this.#instagramUrl;
-        tiktokUrl.href=this.#tiktokUrl;
+        desmosUrl.href = this.#desmosUrl;
+        twitterUrl.href = this.#twitterUrl;
+        instagramUrl.href = this.#instagramUrl;
+        tiktokUrl.href = this.#tiktokUrl;
 
         //description
         description.textContent = this.#description;
@@ -134,7 +133,7 @@ class Work {
         //documentFragmentに追加
         documentFragment.appendChild(worksListItem);
     }
-    
+
     //work.categoryがselectedCategoryを含むか判定
     hasSelectedCategory() {
         const categoryButton = new CategoryButton();
@@ -243,7 +242,7 @@ class Works {
         return this.#worksInfomation;
     }
 
-    //worksをulに追加
+    //worksをworksListに追加
     appendWorks() {
         //documentFragmentをつくる
         const documentFragment = document.createDocumentFragment();
@@ -253,24 +252,31 @@ class Works {
             work.appendWork(documentFragment);
         }
 
-        //ulにdocumentFragmentを追加
-        const ul = document.getElementById("main-content-works-list");
-        ul.appendChild(documentFragment);
+        //worksListにdocumentFragmentを追加
+        const worksList = document.getElementById("main-content-works-list");
+        worksList.appendChild(documentFragment);
     }
 
     //選択されたカテゴリーの作品を表示
-    //cloneを使って一度に変更する方が良い
     displaySelectedWorks() {
-        for (const work of this.#worksInfomation) {
-            let li = document.getElementById(work.title);
+        //worksListのcloneを作る．
+        const worksList = document.getElementById("main-content-works-list");
+        const clone = worksList.cloneNode(true);
 
-            //workがselectedCategoryを持っていればば表示する
+        //clone内でプロパティーを書き換える
+        for (const work of this.#worksInfomation) {
+            const worksListItem = clone.querySelector("#" + work.title);
+
+            //workがselectedCategoryを持っていれば表示する
             if (work.hasSelectedCategory()) {
-                li.style.display = ""
+                worksListItem.style.display = ""
             } else {
-                li.style.display = "none"
+                worksListItem.style.display = "none"
             }
         }
+
+        //cloneでworksListを上書きする
+        worksList.parentNode.replaceChild(clone,worksList);
     }
 }
 
