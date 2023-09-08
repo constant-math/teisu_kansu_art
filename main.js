@@ -5,11 +5,6 @@ class CategoryButton {
     constructor() {
     }
 
-    get categories() {
-        return this.#categories;
-    }
-
-
     //選択されているcategoryを取得
     get selectedCategory() {
         const buttons = document.getElementsByName("main-category-button");
@@ -135,15 +130,13 @@ class Work {
     }
 
     //work.categoryがselectedCategoryを含むか判定
-    hasSelectedCategory() {
-        const categoryButton = new CategoryButton();
-
+    hasSelectedCategory(selectedCategory) {
         //すべてが選択されているとき
-        if (categoryButton.selectedCategory == "すべて") {
+        if (selectedCategory == "すべて") {
             return true;
         }
 
-        return this.#category.includes(categoryButton.selectedCategory);
+        return this.#category.includes(selectedCategory);
     }
 
 
@@ -151,7 +144,7 @@ class Work {
 
 //作品をまとめたclass
 class Works {
-    #worksInfomation = [
+    #works = [
         new Work(
             "正岡式",
             "./images/masaokashiki.png",
@@ -238,17 +231,13 @@ class Works {
     constructor() {
     }
 
-    get worksInfomation() {
-        return this.#worksInfomation;
-    }
-
     //worksをworksListに追加
     appendWorks() {
         //documentFragmentをつくる
         const documentFragment = document.createDocumentFragment();
 
         //workをdocumentFragmentに追加
-        for (const work of this.#worksInfomation) {
+        for (const work of this.#works) {
             work.appendWork(documentFragment);
         }
 
@@ -258,17 +247,17 @@ class Works {
     }
 
     //選択されたカテゴリーの作品を表示
-    displaySelectedWorks() {
+    displaySelectedWorks(selectedCategory) {
         //worksListのcloneを作る．
         const worksList = document.getElementById("main-content-works-list");
         const clone = worksList.cloneNode(true);
 
         //clone内でプロパティーを書き換える
-        for (const work of this.#worksInfomation) {
+        for (const work of this.#works) {
             const worksListItem = clone.querySelector("#" + work.title);
 
             //workがselectedCategoryを持っていれば表示する
-            if (work.hasSelectedCategory()) {
+            if (work.hasSelectedCategory(selectedCategory)) {
                 worksListItem.style.display = ""
             } else {
                 worksListItem.style.display = "none"
