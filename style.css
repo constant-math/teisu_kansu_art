@@ -9,35 +9,68 @@ body {
 
 div {
     display: flex;
-    align-items: center;
 }
 
 ul {
     margin: 0;
     padding: 0;
     display: flex;
-    align-items: center;
 }
 
 li {
+    display: flex;
     list-style: none;
+}
+
+nav {
+    display: flex;
+}
+
+h1 {
+    font-size: 1.3em;
+}
+
+a {
+    display: flex;
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    background-color: hsl(0, 0%, 66%);
+}
+
+p{
+    /* margin: auto; */
 }
 
 
 /* header */
 .header-container {
+    font-size: 18px;
     white-space: nowrap;
-    background-color: rgba(255, 179, 0, 0.553);
+    /* background-color: hsl(235, 80%, 90%); */
+    box-shadow: 0 0px 10px 0 hsl(235, 50%, 80%);
+
 }
 
 
 /* header-title */
+.header-title-container {
+    margin-left: 3%;
+}
 
 
 
 /* header-sns */
 .header-sns-container {
     margin-left: auto;
+    margin-right: 3%;
+}
+
+
+.header-sns-list-item-a-p{
+    margin: auto 10px;
 }
 
 
@@ -56,7 +89,7 @@ li {
 
 
 .main-content-title-container {
-    font-size: 1.7em;
+    /* font-size: 1.7em; */
 }
 
 .main-content-works-list {
