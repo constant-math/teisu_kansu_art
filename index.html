@@ -65,37 +65,47 @@
     <main class="main">
         <div class="main-container">
             <div class="main-category-container">
+                <p class="main-category-p">ジャンル</p>
                 <ul class="main-categories-list">
-                    ジャンル
                     <li class="main-categories-list-item">
-                        <label class="main-category-label">
-                            <input type="radio" name="main-category-button" value="すべて"
-                                onclick="works.displaySelectedWorks(categoryButton.selectedCategory)" checked>すべて
-                        </label>
+                        <p class="main-category-p">
+                            <label class="main-category-label">
+                                <input type="radio" name="main-category-button" value="すべて"
+                                    onclick="works.displaySelectedWorks(categoryButton.selectedCategory)" checked>すべて
+                            </label>
+                        </p>
                     </li>
                     <li class="main-categories-list-item">
-                        <label class="main-category-label">
-                            <input type="radio" name="main-category-button" value="ネタ"
-                                onclick="works.displaySelectedWorks(categoryButton.selectedCategory)">ネタ
-                        </label>
+                        <p class="main-category-p">
+                            <label class="main-category-label">
+                                <input type="radio" name="main-category-button" value="ネタ"
+                                    onclick="works.displaySelectedWorks(categoryButton.selectedCategory)">ネタ
+                            </label>
+                        </p>
                     </li>
                     <li class="main-categories-list-item">
-                        <label class="main-category-label">
-                            <input type="radio" name="main-category-button" value="ハイクオリティー"
-                                onclick="works.displaySelectedWorks(categoryButton.selectedCategory)">ハイクオリティー
-                        </label>
+                        <p class="main-category-p">
+                            <label class="main-category-label">
+                                <input type="radio" name="main-category-button" value="ハイクオリティー"
+                                    onclick="works.displaySelectedWorks(categoryButton.selectedCategory)">ハイクオリティー
+                            </label>
+                        </p>
                     </li>
                     <li class="main-categories-list-item">
-                        <label class="main-category-label">
-                            <input type="radio" name="main-category-button" value="シンプル"
-                                onclick="works.displaySelectedWorks(categoryButton.selectedCategory)">シンプル
-                        </label>
+                        <p class="main-category-p">
+                            <label class="main-category-label">
+                                <input type="radio" name="main-category-button" value="シンプル"
+                                    onclick="works.displaySelectedWorks(categoryButton.selectedCategory)">シンプル
+                            </label>
+                        </p>
                     </li>
                     <li class="main-categories-list-item">
-                        <label class="main-category-label">
-                            <input type="radio" name="main-category-button" value="ハート"
-                                onclick="works.displaySelectedWorks(categoryButton.selectedCategory)">ハート
-                        </label>
+                        <p class="main-category-p">
+                            <label class="main-category-label">
+                                <input type="radio" name="main-category-button" value="ハート"
+                                    onclick="works.displaySelectedWorks(categoryButton.selectedCategory)">ハート
+                            </label>
+                        </p>
                     </li>
                 </ul>
             </div>
@@ -109,26 +119,38 @@
                     <ul class="main-content-works-list" id="main-content-works-list">
                         <li id="main-content-works-list-item-template" class="main-content-works-list-item"
                             style="display: none">
-                            <h3 class="main-content-work-title"></h3>
-                            <a href="" class="main-content-work-a-image"><img src="" alt=""
-                                    class="main-content-work-image"></a>
-                            <video src="" controls autoplay loop muted playsinline
-                                class="main-content-work-video"></video>
-                            <ul class="main-content-work-url-list">
-                                <li class="main-content-work-url-list-item"><a href="" target="_blank"
-                                        rel="noopener noreferrer" class="main-content-work-url-list-item-a">Desmos</a>
-                                </li>
-                                <li class="main-content-work-url-list-item"><a href="" target="_blank"
-                                        rel="noopener noreferrer" class="main-content-work-url-list-item-a">Twitter</a>
-                                </li>
-                                <li class="main-content-work-url-list-item"><a href="" target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="main-content-work-url-list-item-a">Instagram</a></li>
-                                <li class="main-content-work-url-list-item"><a href="" target="_blank"
-                                        rel="noopener noreferrer" class="main-content-work-url-list-item-a">TikTok</a>
-                                </li>
-                            </ul>
-                            <p class="main-content-work-description"></p>
+                            <div class="main-content-work-title-container">
+                                <h3 class="main-content-work-title"></h3>
+                            </div>
+                            <div class="main-content-work-medium">
+                                <a href="" class="main-content-work-a-image"><img src="" alt=""
+                                        class="main-content-work-image"></a>
+                                <video src="" controls autoplay loop muted playsinline
+                                    class="main-content-work-video"></video>
+                            </div>
+                            <div class="main-content-work-url-container">
+                                <ul class="main-content-work-url-list">
+                                    <li class="main-content-work-url-list-item"><a href="" target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="main-content-work-url-list-item-a">Desmos</a>
+                                    </li>
+                                    <li class="main-content-work-url-list-item"><a href="" target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="main-content-work-url-list-item-a">Twitter</a>
+                                    </li>
+                                    <li class="main-content-work-url-list-item"><a href="" target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="main-content-work-url-list-item-a">Instagram</a></li>
+                                    <li class="main-content-work-url-list-item"><a href="" target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="main-content-work-url-list-item-a">TikTok</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="main-content-work-description-container">
+                                <p class="main-content-work-description"></p>
+                            </div>
+
                         </li>
                     </ul>
                 </div>
