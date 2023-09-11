@@ -74,19 +74,19 @@ class Work {
     ////workをdocumentFragmentに追加
     appendWork(documentFragment) {
         //templateからcloneして子要素を取得する
-        const template = document.getElementById("main-content-works-list-item-template");
+        const template = document.getElementById("main-works-list-item-template");
         const worksListItem = template.cloneNode(true);
-        const title = worksListItem.querySelector(".main-content-work-title");
-        const aImage = worksListItem.querySelector(".main-content-work-a-image");
-        const image = aImage.querySelector(".main-content-work-image");
-        const video = worksListItem.querySelector(".main-content-work-video");
-        const urlList = worksListItem.querySelector(".main-content-work-url-list");
-        const urlListItems = urlList.querySelectorAll(".main-content-work-url-list-item");
-        const desmosUrl = urlListItems[0].querySelector(".main-content-work-url-list-item-a");
-        const twitterUrl = urlListItems[1].querySelector(".main-content-work-url-list-item-a");
-        const instagramUrl = urlListItems[2].querySelector(".main-content-work-url-list-item-a");
-        const tiktokUrl = urlListItems[3].querySelector(".main-content-work-url-list-item-a");
-        const description = worksListItem.querySelector(".main-content-work-description");
+        const title = worksListItem.querySelector(".main-work-title");
+        const aImage = worksListItem.querySelector(".main-work-a-image");
+        const image = aImage.querySelector(".main-work-image");
+        const video = worksListItem.querySelector(".main-work-video");
+        const urlList = worksListItem.querySelector(".main-work-url-list");
+        const urlListItems = urlList.querySelectorAll(".main-work-url-list-item");
+        const desmosUrl = urlListItems[0].querySelector(".main-work-url-list-item-a");
+        const twitterUrl = urlListItems[1].querySelector(".main-work-url-list-item-a");
+        const instagramUrl = urlListItems[2].querySelector(".main-work-url-list-item-a");
+        const tiktokUrl = urlListItems[3].querySelector(".main-work-url-list-item-a");
+        const description = worksListItem.querySelector(".main-work-description");
 
 
         //worksListItem
@@ -242,14 +242,14 @@ class Works {
         }
 
         //worksListにdocumentFragmentを追加
-        const worksList = document.getElementById("main-content-works-list");
+        const worksList = document.getElementById("main-works-list");
         worksList.appendChild(documentFragment);
     }
 
     //選択されたカテゴリーの作品を表示
     displaySelectedWorks(selectedCategory) {
         //worksListのcloneを作る．
-        const worksList = document.getElementById("main-content-works-list");
+        const worksList = document.getElementById("main-works-list");
         const clone = worksList.cloneNode(true);
 
         //clone内でプロパティーを書き換える

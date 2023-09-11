@@ -59,7 +59,7 @@ p {
     height: 60px;
     white-space: nowrap;
     background-color: hsl(235, 80%, 90%);
-    box-shadow: 0 0px 10px 0 hsl(235, 50%, 80%);
+    /* box-shadow: 0 0px 10px 0 hsl(235, 30%, 70%); */
 
 }
 
@@ -77,6 +77,9 @@ p {
     font-size: 1.2rem;
 }
 
+.header-sns-list-item-a:hover {
+    background-color: hsl(235, 30%, 70%);
+}
 
 .header-sns-list-item-a-p {
     margin: auto 10px;
@@ -89,6 +92,11 @@ p {
     /* white-space: nowrap; */
 }
 
+.main-title-container {
+    height: 70px;
+    font-size: 1.5rem;
+}
+
 .main-category-container {
     height: 50px;
     margin: 0 auto;
@@ -97,42 +105,28 @@ p {
 }
 
 
-.main-content-container {
-    flex-flow: column;
-}
-
-.main-content-title-container {
-    height: 70px;
-    font-size: 1.5rem;
-}
-
-
-.main-content-works-list {
+.main-works-list {
     flex-wrap: wrap;
 }
 
 
 
-.main-content-works-list-item {
+.main-works-list-item {
     margin-left: 2.5%;
     margin-bottom: 2%;
     flex-basis: 30%;
     flex-flow: column;
 }
 
-.main-content-work-title-container {
+.main-work-title-container {
     font-size: 1.2rem;
 }
 
 
-.main-content-work-url-list {
+.main-work-url-list {
     margin: 0 auto;
 }
 
-.main-content-work-url-list-item {
-    /* list-style: none;
-    display: inline-block; */
-}
 
 /* PC半画面 */
 
