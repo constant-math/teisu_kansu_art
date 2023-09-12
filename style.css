@@ -2,33 +2,33 @@
 
 /* PC版 */
 /* tag */
-body {
-    margin: 0;
-}
-
-
-div {
-    display: flex;
-}
-
-ul {
+body,
+ul,
+p,
+h1,
+h2,
+h3 {
     margin: 0;
     padding: 0;
-    display: flex;
 }
+
+
+div,
+ul,
+li,
+nav,
+a {
+    display: flex;
+    box-sizing: border-box;
+}
+
 
 li {
-    display: flex;
     list-style: none;
-}
-
-nav {
-    display: flex;
 }
 
 
 a {
-    display: flex;
     text-decoration: none;
     color: black;
 }
@@ -46,17 +46,15 @@ h1,
 h2,
 h3 {
     font-size: 1.0em;
-    margin: auto;
 }
 
-p {
-    margin: auto 0;
-}
 
 
 /* header */
 .header-container {
-    height: 60px;
+    height: 70px;
+    padding: 0 3%;
+    justify-content: space-between;
     white-space: nowrap;
     background-color: hsl(235, 80%, 90%);
     /* box-shadow: 0 0px 10px 0 hsl(235, 30%, 70%); */
@@ -65,45 +63,47 @@ p {
 
 
 .header-title-container {
-    margin-left: 3%;
+    align-items: center;
     font-size: 1.5rem;
 }
 
 
-
-.header-sns-container {
-    margin-left: auto;
-    margin-right: 3%;
+.header-sns-list-item-a {
+    padding: 0 10px;
+    align-items: center;
     font-size: 1.2rem;
 }
 
 .header-sns-list-item-a:hover {
-    background-color: hsl(235, 30%, 70%);
+    background-color: hsl(235, 30%, 75%);
 }
 
-.header-sns-list-item-a-p {
-    margin: auto 10px;
-}
 
 
 /* main */
 .main-container {
     flex-flow: column;
-    /* white-space: nowrap; */
+    align-items: center;
+    background-color: hsl(235, 50%, 98%);
 }
 
 .main-title-container {
     height: 70px;
+    align-items: center;
     font-size: 1.5rem;
 }
 
 .main-category-container {
     height: 50px;
-    margin: 0 auto;
-
+    align-items: center;
     white-space: nowrap;
+    border-style: solid;
 }
 
+
+.main-works-container {
+    margin-top: 40px;
+}
 
 .main-works-list {
     flex-wrap: wrap;
@@ -112,19 +112,24 @@ p {
 
 
 .main-works-list-item {
-    margin-left: 2.5%;
-    margin-bottom: 2%;
-    flex-basis: 30%;
+    margin-left: 14%;
+    margin-bottom: 5%;
+    width: 29%;
     flex-flow: column;
+    /* align-items: flex-start; */
 }
+
+
 
 .main-work-title-container {
     font-size: 1.2rem;
 }
 
 
+
 .main-work-url-list {
-    margin: 0 auto;
+    width: 100%;
+    justify-content: space-between;
 }
 
 
